@@ -1,0 +1,59 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,40,23)
+  Text = ("Get WebApp from URL")
+  Resizable = False
+  { Label1 Label
+    MoveScaled(1.7143,1.5714,5,4)
+    Text = ("URL:")
+  }
+  { txt_url TextBox
+    MoveScaled(6,2,24,3)
+    Text = ("http://")
+  }
+  { Button1 Button
+    MoveScaled(31,2,8,3)
+    Text = ("Get")
+  }
+  { Separator1 Separator
+    MoveScaled(-1,5,43,2)
+  }
+  { WebView1 WebView
+    MoveScaled(1,0,3,2)
+    Visible = False
+  }
+  { Timer1 #Timer
+    #MoveScaled(5,-5)
+    Enabled = True
+    Delay = 100
+  }
+  { TextLabel1 TextLabel
+    MoveScaled(1,8,6,3)
+    Text = ("Name:")
+  }
+  { txt_name TextBox
+    MoveScaled(7,8,32,3)
+  }
+  { !aIcon PictureBox
+    MoveScaled(1,16,5,6)
+    #Public = True
+    Picture = Picture["application-1.png"]
+    Stretch = True
+    Border = Border.Plain
+  }
+  { TextLabel2 TextLabel
+    MoveScaled(0.8571,12.2857,7,3)
+    Text = ("Type:")
+  }
+  { lst_type ComboBox
+    MoveScaled(7,12,32,3)
+    ReadOnly = True
+    List = [("Utility"), ("Science"), ("Office"), ("Network"), ("Graphics"), ("Game"), ("Education"), ("Development"), ("AudioVideo")]
+  }
+  { Button2 Button
+    MoveScaled(7,16,32,6)
+    Text = ("OK")
+    Picture = Picture["icon:/16/apply"]
+  }
+}

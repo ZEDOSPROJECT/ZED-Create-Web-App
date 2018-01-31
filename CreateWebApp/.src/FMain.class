@@ -1,0 +1,83 @@
+' Gambas class file
+
+
+Public Sub Button1_Click()
+
+  aIcon.Picture = Null
+  WebView1.Url = txt_url.Text
+  WebView1.Refresh
+  txt_name.Text = ""
+  Button2.Enabled = True
+
+End
+
+
+Public Sub Timer1_Timer()
+  Dim ReIcon As Boolean = True
+
+  If txt_name.Text = "" Then
+    txt_name.Text = WebView1.Title
+  Endif
+  
+  If txt_name.Text <> "" And aIcon.Picture <> Null Then
+    Button2.Enabled = True
+    txt_name.Enabled = True
+  Else
+    Button2.Enabled = False
+    txt_name.Enabled = False
+  Endif
+  
+  If WebView1.Progress = 1 Then
+    If ReIcon Then
+      aIcon.Picture = WebView1.Icon
+      ReIcon = False
+    Endif
+  Else
+    ReIcon = True
+  Endif
+End
+
+
+Public Sub Form_Open()
+
+  WebSettings.IconDatabase.Path = File.Dir(File.Dir(Temp$()))
+  WebView1.UserAgent = "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0"
+  WebSettings[WebSettings.AutoLoadImages] = True
+  WebSettings[WebSettings.PluginsEnabled] = True
+  WebSettings[WebSettings.JavascriptEnabled] = True
+  WebSettings[WebSettings.JavaEnabled] = True
+  WebSettings.Fonts.DefaultFontSize = 12
+  WebSettings[WebSettings.JavascriptCanAccessClipboard] = True
+  WebSettings.Cache.Enabled = True
+  WebSettings.Fonts.DefaultFixedFontSize = 12
+
+End
+
+Public Sub Button2_Click()
+
+  Dim Content As String
+  Dim ID As Integer
+  Dim ready As Boolean = False
+   
+  While Not ready
+    Randomize
+    ID = Rand(0, 9999)    
+    
+    If Not Exist(User.Home & "/.local/share/applications/" & ID & ".desktop") Then
+      ready = True
+    Endif
+  Wend
+  
+  Content = "[Desktop Entry]\n" &
+  "Name=" & txt_name.Text & "\n" &
+  "Type=Application\n" &
+  "Categories=" & lst_type.Text & "\n"  
+  "Icon=" & User.Home & "/.local/share/icons/a" & ID & ".png\n" &
+  "Exec=/etc/OpenWA.gambas " & txt_url.Text
+  
+  File.Save(User.Home & "/.local/share/applications/" & ID & ".desktop", Content)
+  aIcon.Picture.Save(User.Home & "/.local/share/icons/a" & ID & ".png", 100)
+  Print Message("WebApp Created!", "Ok")
+  Button2.Enabled = False
+  
+End
