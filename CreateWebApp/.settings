@@ -5,10 +5,10 @@ Count=0
 Count=0
 
 [Executable]
-Path="/home/alexandre/git/ZEDOS_2017/zed_root/sbin/CreateWebApp.gambas"
+Path="/home/alexandre/git/ZED-ROOT-OS/sbin/CreateWebApp.gambas"
 
 [OpenFile]
-File[1]=".src/FMain.class:51.46"
+File[1]=".src/FMain.class:17.77"
 Active=1
 Count=2
 File[2]=".src/FMain.form"

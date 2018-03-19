@@ -73,7 +73,7 @@ Public Sub Button2_Click()
   "Type=Application\n" &
   "Categories=" & lst_type.Text & "\n"  
   "Icon=" & User.Home & "/.local/share/icons/a" & ID & ".png\n" &
-  "Exec=/etc/OpenWA.gambas " & txt_url.Text
+  "Exec=electron " & txt_url.Text
   
   File.Save(User.Home & "/.local/share/applications/" & ID & ".desktop", Content)
   aIcon.Picture.Save(User.Home & "/.local/share/icons/a" & ID & ".png", 100)
